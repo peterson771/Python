@@ -1,0 +1,20 @@
+clock timezone UTC -3
+net server 200.160.7.186
+
+ip access-list standard SNMP_ACCESS_RO
+permit 10.0.0.100
+permit 10.0.0.101
+permit 10.0.0.0 0.0.0.255
+
+ip access-list standard SNMP_ACCESS_RW
+permit 10.0.0.100
+permit 10.0.0.101
+permit 10.0.0.0 0.0.0.255
+
+
+snmp-server community STRING-COMMUNITY RO SNMP_ACCESS_RO
+snmp-server community STRING-COMMUNITY RW SNMP_ACCESS_RW
+snmp-server contact Peterson Reimberg +55 11 98289-2505 peterson.reimberg@gmail.community
+
+snmp-server host 10.0.0.100 version 2c STRING-COMMUNITY
+snmp-server host 10.0.0.101 version 2c STRING-COMMUNITY
